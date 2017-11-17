@@ -21,7 +21,7 @@ public class spawner : MonoBehaviour {
     [Tooltip("SPAWN DELAY: the amount of time (in seconds) between each objet spawned")]
     public float spawnDelay;
     float timer;
-    bool loopSpawn;
+    public bool loopSpawn;
     [Tooltip("START ON AWAKE: Check if you want to immediately spawn objects when you start the game")]
     public bool startOnAwake;
 

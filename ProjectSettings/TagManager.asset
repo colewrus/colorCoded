@@ -10,6 +10,9 @@ TagManager:
   - pusher
   - trap
   - victory
+  - door
+  - spawner
+  - coin
   layers:
   - Default
   - TransparentFX

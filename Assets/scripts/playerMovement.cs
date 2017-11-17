@@ -20,6 +20,8 @@ public class playerMovement : MonoBehaviour {
     public GameType myGame;
     public Transform groundCheckObject;
     public float groundCheckDistance;
+    public bool grounded;
+    public float jumpTimer;
 
     public float jumpForce;
     public float speed;
@@ -37,30 +39,29 @@ public class playerMovement : MonoBehaviour {
         beingPushed = false; 
         rb = GetComponent<Rigidbody2D>();
         Debug.Log("You chose " + myGame + "! Good Luck designer!");
+        grounded = true;
     }
 
 
 
     void FixedUpdate()
     {
-        Debug.DrawRay(groundCheckObject.position, Vector3.down * groundCheckDistance, Color.red);
-
-        Debug.Log(gameManager.instance.current_Enemy + " ? " + gameManager.instance.enemyCount);
+  
         Vector2.ClampMagnitude(rb.velocity, 6.5f);
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-            //ADD A DOUBLE JUMP!!!
-          
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)groundCheckObject.position, Vector2.down, groundCheckDistance);
-            if (hit.collider == null)
+            if (grounded)
             {
-               
-            }
-            else if (hit.collider.tag == "ground")
-            {
+                grounded = false;
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                StartCoroutine(JumpDelay(jumpTimer));
+            }else
+            {
+
             }
+
+
         }
 
         //jump contrainer - keeps player from flying to far too fast
@@ -96,18 +97,48 @@ public class playerMovement : MonoBehaviour {
         }
     }
 
+
+
+
+    IEnumerator JumpDelay(float t)
+    {        
+        yield return new WaitForSeconds(t);
+        grounded = true;
+    }
     void endlessRunner_Controls()
     {
 
     }
 
-	void OnTriggerEnter2D(Collider2D col){
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.transform.tag == "ground")
+        {
+            grounded = true;
+        }else if (collision.gameObject.tag == "door")
+        {
+            Debug.Log("hit door");
+            if (gameManager.instance.current_Collect >= collision.gameObject.GetComponent<genericObjects>().coinCost)
+            {
+                collision.gameObject.SetActive(false);
+            }
+        }else
+        {
+
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag == "collectible") {
             //make it run a function in the object script that runs the following, this allows the player to set the varibles for the objects
             //UI change
             //playsound
             //col.gameObject.GetComponent<genericObjects>().playSound();
             col.gameObject.SetActive(false);
+            if(col.gameObject.tag == "coin")
+            {
+                gameManager.instance.current_Collect++;
+            }
 		}
 
 
@@ -119,12 +150,26 @@ public class playerMovement : MonoBehaviour {
             Vector3 move = new Vector3(rb.velocity.x, physControl.enemyBounce_Amount, 0f);
             rb.velocity = move;
             col.gameObject.SetActive(false);
-        }
-
-        if(col.gameObject.tag == "pusher"){    
+        }else if(col.gameObject.tag == "pusher"){    
             //if col.sound != null
                 //play sound       
             rb.AddForce(transform.up * col.GetComponent<genericObjects>().pushPower, ForceMode2D.Impulse);
+        }
+        if (col.gameObject.tag == "door")
+        {
+            //Debug.Log(col.gameObject.GetComponent<genericObjects>().coinCost);
+            if(gameManager.instance.current_Collect >= col.gameObject.GetComponent<genericObjects>().coinCost)
+            {
+                Debug.Log(gameManager.instance.collectCount + ", " + col.gameObject.GetComponent<genericObjects>().coinCost);
+                col.gameObject.GetComponent<Animator>().Play("flash");                
+            }           
+        }else if (col.gameObject.name == "spawner")
+        {
+            Debug.Log("spawner");
+            col.gameObject.GetComponent<spawner>().loopSpawn = false;
+            Color tmp = gameObject.GetComponent<SpriteRenderer>().color;
+            tmp.a = 0.3f;
+            col.gameObject.GetComponent<SpriteRenderer>().color = tmp;
         }
 	}
 
