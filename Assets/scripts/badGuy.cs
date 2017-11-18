@@ -55,4 +55,7 @@ public class badGuy : MonoBehaviour {
     {
 
     }
+
+    //ghost behavior
+
 }

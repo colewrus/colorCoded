@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4309875435779136}
   - component: {fileID: 212873352736167506}
-  - component: {fileID: 61801874794452316}
   - component: {fileID: 114741739263766284}
+  - component: {fileID: 61638549102357000}
+  - component: {fileID: 95975314057668394}
   m_Layer: 0
   m_Name: coin
   m_TagString: coin
@@ -36,13 +37,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1380303857839610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 147.36, y: -632.83, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.75, z: 1}
+  m_LocalPosition: {x: 115.61, y: -634.54, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61801874794452316
+--- !u!61 &61638549102357000
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -51,22 +52,39 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.36, y: 0.36}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.36, y: 0.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.36, y: 0.36}
+  m_Size: {x: 0.21, y: 0.21}
   m_EdgeRadius: 0
+--- !u!95 &95975314057668394
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1380303857839610}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 06adb1c6a4c0a5040b9bb0ed4af59211, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114741739263766284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,7 +140,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300082, guid: 3e1c7f12eb0652848a373a8bf1a94149, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27016c7bd4202404fb73dc00e7caba03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

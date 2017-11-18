@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine.UI;
 
 public enum winSetting { collectWin, enemyWin, itemWin };
@@ -31,6 +31,10 @@ public class gameManager : MonoBehaviour {
     public int current_Enemy;
     public bool won;
 
+    //UI Elements
+    public Text coins;
+    public Text lives;
+
     void Awake()
     {
         if (instance == null)
@@ -45,7 +49,7 @@ public class gameManager : MonoBehaviour {
         current_Enemy = 0;
         current_Collect = 0;
         won = false;
-        Debug.Log(current_Enemy + " : " + enemyCount);
+        coins.text = "Coins: " + current_Collect;
 	}
 	
 	// Update is called once per frame
@@ -81,7 +85,7 @@ public class gameManager : MonoBehaviour {
 }
 
 
-
+/*
 [CustomEditor(typeof(gameManager))]
 public class gameManagerEditor : Editor
 {
@@ -96,8 +100,8 @@ public class gameManagerEditor : Editor
         GM.nextLevelDelay = EditorGUILayout.FloatField("Next Level Delay", GM.nextLevelDelay);
 
         GM.winCondition = (winSetting)EditorGUILayout.EnumPopup(GM.winCondition);
-        
-        
+
+        GM.coins = (Text)EditorGUILayout.ObjectField("Coin Text", GM.coins, typeof(Text), true);
 
       //*******WIN CONDITION*************
         if(GM.winCondition == winSetting.collectWin)
@@ -126,4 +130,4 @@ public class gameManagerEditor : Editor
     }
 
 }
-
+*/

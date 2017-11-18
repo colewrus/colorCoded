@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine.UI;
 
 public enum objType
@@ -40,7 +40,7 @@ public class genericObjects : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (myIdentity == objType.collectible) {
-			gameObject.tag = "collectible";
+			//gameObject.tag = "collectible";
 			gameObject.GetComponent<BoxCollider2D> ().isTrigger = true;
 		}
 
@@ -77,7 +77,7 @@ public class genericObjects : MonoBehaviour {
     }
 }
 
-
+/*
 [CustomEditor(typeof(genericObjects))]
 public class genericObjectsEditor : Editor
 {
@@ -110,4 +110,4 @@ public class genericObjectsEditor : Editor
                 myGui.teleport_Destination = EditorGUILayout.Vector2Field("Destination", myGui.teleport_Destination);
         }
     }
-}
+}*/

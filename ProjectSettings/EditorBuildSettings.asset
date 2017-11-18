@@ -8,6 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/test.unity
     guid: 34527be2f0a1ca442bcd877ed2ea5375
-  - enabled: 1
+  - enabled: 0
     path: Assets/scenes/lvl2.unity
     guid: e6503791c0b9c164db48933fe55d8dee
